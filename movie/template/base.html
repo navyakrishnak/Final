@@ -1,0 +1,149 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie world</title>
+</head>
+<body class="main">
+    <div class="container-fluid">
+        <div style="height: 20px;"></div>
+        
+        <div id="action">
+            <h3><b>ACTION MOVIES</b></h3>
+        </div>
+        <div class="row">
+            {% for movie in action_movies %}
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-3" style="padding: 30px;">
+                <div class="flip-card">
+                    <!-- <a href="{{ movie.youtubelink }}"> -->
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front" style="background-image: url('{{ movie.poster.url }}'); background-size: cover; background-position: center;">
+                                <div class="overlay"></div>
+                                <p style="padding-top: 200px; color: white; letter-spacing: 1.2px; font-size: 32px; font-weight: 900;">{{ movie.name }}</p>
+                                <p style="color: white; letter-spacing: 1.2px; font-size: 22px; font-weight: 900;">{{ movie.releaseDate }}</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <p style="font-size: 14px; color: black;">{{ movie.desc }}</p>
+                                <p style="font-size: 14px; color: black; font-weight: 600;">{{ movie.actors }}</p>
+                                <p style="font-size: 14px; color: black; font-weight: 600;">{{ movie.category }}</p>
+                                
+                                   <div class="row">
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                                        <a  href="{{movie.youtubelink}}"> <button class="btn btn-primary">TRAILER</button></a>
+                                    </div>
+                                    {% if username == movie.username %}
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                                        <a href="{% url 'movieblog:editmovie' movie.name %} "><button class="btn btn-primary">EDIT</button>
+                                    </a></div>
+                                    {% else %}
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                                        <a href="{% url 'movieblog:review' movie.name %} "><button class="btn btn-primary">REVIEW</button></a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                
+                            </div>
+                        </div>
+                    <!-- </a> -->
+                </div>
+            </div>
+            {% endfor %}
+            
+
+    <div style="height: 20px;"></div>
+        <div id="comdedy">
+            <h3><b>COMEDY MOVIES</b></h3>
+        </div>
+        {% for movie in comedy_movies %}
+<div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-3" style="padding: 30px;">
+    <div class="flip-card">
+ 
+            <div class="flip-card-inner">
+                <div class="flip-card-front" style="background-image: url('{{ movie.poster.url }}'); background-size: cover; background-position: center;">
+                    <div class="overlay"></div>
+                    <p style="padding-top: 200px; color: white; letter-spacing: 1.2px; font-size: 32px; font-weight: 900;">{{ movie.name }}</p>
+                    <p style="color: white; letter-spacing: 1.2px; font-size: 22px; font-weight: 900;">{{ movie.releaseDate }}</p>
+                </div>
+                <div class="flip-card-back">
+                    <p style="font-size: 14px; color: black;">{{ movie.desc }}</p>
+                    <p style="font-size: 14px; color: black; font-weight: 600;">{{ movie.actors }}</p>
+                    <p style="font-size: 14px; color: black; font-weight: 600;">{{ movie.category }}</p>
+                    
+                       <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                          <a href="{{movie.youtubelink}}"> <button class="btn btn-primary">TRAILER</button></a>
+                        </div>
+                        {% if username == movie.username %}
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                            <a href="{% url 'movieblog:editmovie' movie.name %} "><button class="btn btn-primary">EDIT</button>
+                        </a></div>
+                        {% else %}
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                                        <a href="{% url 'movieblog:review' movie.name %} "><button class="btn btn-primary">REVIEW</button></a>
+                                    </div>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+      
+    </div>
+</div>
+{% endfor %}
+
+
+
+</a>
+<div style="height: 20px;"></div>
+<div id="thriler">
+    <h3><b>THRILLER MOVIES</b></h3>
+</div>
+{% for movie in thriller_movies %}
+<div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-3" style="padding: 30px;">
+    <div class="flip-card">
+        <!-- <a href="{{ movie.youtubelink }}"> -->
+            <div class="flip-card-inner">
+                <div class="flip-card-front" style="background-image: url('{{ movie.poster.url }}'); background-size: cover; background-position: center;">
+                    <div class="overlay"></div>
+                    <p style="padding-top: 200px; color: white; letter-spacing: 1.2px; font-size: 32px; font-weight: 900;">{{ movie.name }}</p>
+                    <p style="color: white; letter-spacing: 1.2px; font-size: 22px; font-weight: 900;">{{ movie.releaseDate }}</p>
+                </div>
+                <div class="flip-card-back">
+                    <p style="font-size: 14px; color: black;">{{ movie.desc }}</p>
+                    <p style="font-size: 14px; color: black; font-weight: 600;">{{ movie.actors }}</p>
+                    <p style="font-size: 14px; color: black; font-weight: 600;">{{ movie.category }}</p>
+                    
+                       <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                            <a href="{{movie.youtubelink}}"> <button class="btn btn-primary">TRAILER</button></a>
+                        </div>
+                        {% if username == movie.username %}
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                            <a href="{% url 'movieblog:editmovie' movie.name %} "><button class="btn btn-primary">EDIT</button>
+                        </a></div>
+                        {% else %}
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                                        <a href="{% url 'movieblog:review' movie.name %} "><button class="btn btn-primary">REVIEW</button></a>
+                                    </div>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+        <!-- </a> -->
+    </div>
+</div>
+{% endfor %}
+
+
+
+<div style="height: 20px;"></div>
+    </div>
+
+    </div>
+   
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThrillerMovies</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    
+    <script src="https://kit.fontawesome.com/16b1d188ad.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body class="main">
+    <div style="height: 70px;">
+        {% include 'navbar.html' %}
+    </div>
+    <div class="container-fluid">
+        <div style="height: 20px;"></div>
+        
+        <div id="thriller">
+            <h3><b>THRILLER MOVIES</b></h3>
+        </div>
+
+        <div class="row">
+            {% for movie in thriller_movies %}
+                {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+                    </div><div class="row">
+                {% endif %}
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3" style="padding: 30px;">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front" style="background-image: url('{{ movie.poster.url }}'); background-size: cover; background-position: center;">
+                                <div class="overlay"></div>
+                                <p style="padding-top: 200px; color: white; letter-spacing: 1.2px; font-size: 32px; font-weight: 900;">{{ movie.name }}</p>
+                                <p style="color: white; letter-spacing: 1.2px; font-size: 22px; font-weight: 900;">{{ movie.releaseDate }}</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <p style="font-size: 14px; color: black;">{{ movie.desc }}</p>
+                                <p style="font-size: 14px; color: black; font-weight: 600;">{{ movie.actors }}</p>
+                                <p style="font-size: 14px; color: black; font-weight: 600;">{{ movie.category }}</p>
+                                <div class="row">
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                                        <a href="{{movie.youtubelink}}"><button class="btn btn-primary">Trailer</button></a>
+                                    </div>
+                                    {% if username == movie.username %}
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                                        <button class="btn btn-primary">Edit</button>
+                                    </div>
+                                    {% else %}
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                                        <a href="{% url 'movieblog:review' movie.name %} ">    <button class="btn btn-primary">Review</button>
+                                   </a> </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+</body>
+</html>

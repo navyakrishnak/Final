@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% block title %}
+search
+{% endblock %}
+{% block content %}
+<div style="padding-top: 60px;">
+    <p class="text-center my_search_text">You have searched for <b>"{{query}}"</b></p>
+
+</div>
+
+
+
+
+
+<div class="row">
+    {% for movie in movie %}
+        {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+            </div><div class="row">
+        {% endif %}
+
+
+
+<div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-2" style="padding: 30px;">
+    <div class="flip-card">
+ 
+            <div class="flip-card-inner">
+                <div class="flip-card-front" style="background-image: url('{{ movie.poster.url }}'); background-size: cover; background-position: center;">
+                    <div class="overlay"></div>
+                    <p style="padding-top: 200px; color: white; letter-spacing: 1.2px; font-size: 32px; font-weight: 900;">{{ movie.name }}</p>
+                    <p style="color: white; letter-spacing: 1.2px; font-size: 22px; font-weight: 900;">{{ movie.releaseDate }}</p>
+                </div>
+                <div class="flip-card-back">
+                    <p style="font-size: 14px; color: black;">{{ movie.desc }}</p>
+                    <p style="font-size: 14px; color: black; font-weight: 600;">{{ movie.actors }}</p>
+                    <p style="font-size: 14px; color: black; font-weight: 600;">{{ movie.category }}</p>
+                    
+                       <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                          <a href="{{ movie.youtubelink }}"> <button class="btn btn-primary">Triler</button></a> 
+                        </div>
+                        {% if username == movie.username %}
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                            <button class="btn btn-primary">Edit</button>
+                        </div>
+                        {% else %}
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb">
+                                        <a href="{% url 'movieblog:review' movie.name %} "><button class="btn btn-primary"> Review</button></a>
+                                    </div>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+      
+    </div>
+</div>
+
+
+{% empty %}
+<div class="row mx_auto ">
+    <p class="text-center">
+        0 result found
+    </p>
+
+</div>
+<div style="height: 300px;"></div>
+{% endfor %}
+</div>
+
+
+{% endblock %}

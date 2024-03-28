@@ -1,0 +1,85 @@
+
+  
+<div class="container-fluid" style="position: fixed; z-index:3!important">
+
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: none; ">
+      <div class="container-fluid " >
+  
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-1 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active nav_item" aria-current="page" href="{% url 'movieblog:index' %}">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav_item" aria-current="page" href="#"></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav_item" aria-current="page" href="#"></a>
+            </li>
+          
+            <li class="nav-item ">
+              <a class="nav-link active nav_item" aria-current="page" href="#action">ACTION</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link active nav_item" aria-current="page" href="#comdedy">COMEDY</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link active nav_item" aria-current="page" href="#thriler">THRILLER</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link active nav_item" aria-current="page" href="#"></a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link active nav_item" aria-current="page" href="{% url 'movielist:addmovie' %}">ADD NEW MOVIE</a>
+            </li>
+          </ul>
+          <form class="d-flex"  style="padding-right: 10px;" method="get" action=" {% url 'search:search' %}">
+  
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search" name ="q" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        
+            
+         
+          </form>
+          <ul class="navbar-nav me-auto mb-1 mb-lg-0">
+          {% if user.is_authenticated %}
+          {% if user == 'admin' %}
+          <li class="nav-item ">
+            <a class="nav-link active" aria-current="page"><button class = "btn btn-outline-success">{{user.username}}</button></a>
+          
+        </li>
+        {% else %}
+        <li class="nav-item ">
+          <a class="nav-link active" aria-current="page" href="{% url 'register:editprofile' %}"><button class = "btn btn-outline-success">{{user.username}}</button></a>
+        
+      </li>
+        {% endif %}
+        
+         
+          <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'register:logout' %}"><button class = "btn btn-danger">Logout</button></a>
+          </li>
+         
+           {% else %}
+          <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'register:login' %}"><button class = "btn btn-outline-success">Login</button></a>
+              
+          </li>
+          <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'register:register' %}"><button class = "btn btn-outline-success">Register</button></a>
+          </li>
+          {% endif %}
+       
+        </ul>
+  
+         
+        </div>
+     </div>
+    </nav>
+  </div>
+ 

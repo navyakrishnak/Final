@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div style="height: 200px; padding-top: 50px;">
+    <center><h5 style="color: green;"><b>User  Successfully Created</b></h5>
+        <a href="{% url 'register:login' %}" style="text-decoration: none; color: blue;">Back to Login</a></center>
+</div>
+<div style="height: 250px;"></div>
+
+
+{% endblock %}
